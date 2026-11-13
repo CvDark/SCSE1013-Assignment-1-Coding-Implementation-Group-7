@@ -1,0 +1,6 @@
+#Compiled executables
+*.exe
+*.out
+
+#Vsc local configuration
+.vscode/
