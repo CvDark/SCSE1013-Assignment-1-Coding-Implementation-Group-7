@@ -2,10 +2,11 @@
 #include <string>
 using namespace std;
 
+
 int main() {
     int LabToolMark,LabCodeMark,Assign1Mark,Assign2Mark,QuizMark,FEMark,TestMark;
     float FLabToolMark,FLabCodeMark,FAssign1Mark,FAssign2Mark,FQuizMark,TFEMark,FTestMark,OverallScore;
-     string grade;
+    string grade;
 
     cout << "Please enter student Lab Exercise (Tools) mark:"<< '\n';
     cin >> LabToolMark;
