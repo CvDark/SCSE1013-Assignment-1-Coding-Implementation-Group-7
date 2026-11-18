@@ -39,17 +39,9 @@ double getGradePoint(const string& grade) {
 // feature 1
 // ============================================================================
 void feature1() {
-    string subjectName, grade;
-    double creditHours;
+    string grade;
     int LabToolMark, LabCodeMark, Assign1Mark, Assign2Mark, QuizMark, FEMark, TestMark;
     float FLabToolMark, FLabCodeMark, FAssign1Mark, FAssign2Mark, FQuizMark, TFEMark, FTestMark, OverallScore;
-
-    cin.ignore();
-    cout << "\nEnter subject name: ";
-    getline(cin, subjectName);
-
-    cout << "Enter credit hours for " << subjectName << ": ";
-    cin >> creditHours;
 
     cout << "Please enter student Lab Exercise (Tools) mark (out of 100):" << '\n';
     cin >> LabToolMark;
@@ -115,7 +107,7 @@ void feature1() {
     cout << "Overall Score: " << fixed << setprecision(2) << OverallScore << " | Grade: " << grade << '\n';
 
     // Save record so Feature 3 can display it
-    subjects.push_back({subjectName, OverallScore, grade, creditHours, getGradePoint(grade)});
+    subjects.push_back({"",OverallScore,grade,0.0, getGradePoint(grade)});
 }
 
 // ============================================================================
@@ -278,11 +270,27 @@ void additionalFeature() {
         transform(subject.begin(), subject.end(), subject.begin(), ::tolower);
     }
 }
+void DisplaySubject() {
+    string subjectName;
+    double creditHours;
+
+    cin.ignore();
+    cout << "\nEnter subject name: ";
+    getline(cin, subjectName);
+
+    cout << "Enter credit hours for " << subjectName << ": ";
+    cin >> creditHours;
+
+    subjects.push_back({subjectName, -1.0, "", creditHours, 0.0});
+
+}
 
 // ============================================================================
 // Main Menu Controller
 // ============================================================================
 int main() {
+    string subjectName, grade;
+    double creditHours;
     int choice;
 
     do {
@@ -299,6 +307,7 @@ int main() {
 
         switch (choice) {
             case 1:
+                DisplaySubject();
                 feature1();
                 break;
             case 2:
@@ -320,3 +329,4 @@ int main() {
 
     return 0;
 }
+

@@ -8,33 +8,26 @@ int main() {
     float FLabToolMark,FLabCodeMark,FAssign1Mark,FAssign2Mark,FQuizMark,TFEMark,FTestMark,OverallScore;
     string grade;
 
-    cout << "Please enter student Lab Exercise (Tools) mark:"<< '\n';
+    cout << "Please enter student Lab Exercise (Tools) mark (in percentage):"<< '\n';
     cin >> LabToolMark;
-    FLabToolMark = (LabToolMark/)*0.1;
 
-    cout << "Please enter student Lab Exercise (Code) mark:"<< '\n';
+    cout << "Please enter student Lab Exercise (Code) mark (in percentage):"<< '\n';
     cin >> LabCodeMark;
-    FLabCodeMark = (LabCodeMark/)*0.1;
 
-    cout << "Please enter student Assignment 1 mark:"<< '\n';
+    cout << "Please enter student Assignment 1 mark (in percentage):"<< '\n';
     cin >> Assign1Mark;
-    FAssign1Mark = (Assign1Mark/)*0.1;
 
-    cout << "Please enter student Assignment 2 mark:"<< '\n';
+    cout << "Please enter student Assignment 2 mark (in percentage):"<< '\n';
     cin >> Assign2Mark;
-    FAssign2Mark = (Assign2Mark/)*0.1;
 
-    cout << "Please enter student total Quiz mark:"<< '\n';
+    cout << "Please enter student total Quiz mark (in percentage):"<< '\n';
     cin >> QuizMark;
-    FQuizMark = (QuizMark/)*0.1;    
     
-    cout << "Please enter student total Test mark:"<< '\n';
+    cout << "Please enter student total Test mark (in percentage):"<< '\n';
     cin >> TestMark;
-    FTestMark = (TestMark/)*0.2;
 
-    cout << "Please enter student Final Exam mark:"<< '\n';
+    cout << "Please enter student Final Exam mark (in percentage):"<< '\n';
     cin >> FEMark;
-    TFEMark = (FEMark/)*0.3;
     
     OverallScore = FLabToolMark + FLabCodeMark + FAssign1Mark + FAssign2Mark + FQuizMark + FTestMark + TFEMark;
     if (OverallScore > 100 || OverallScore < 0)  {
