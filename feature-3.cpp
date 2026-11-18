@@ -50,7 +50,7 @@ void displaySummary()
     {
         double GPA = total_GP / total_CH;
 
-        cout << "\nTotal Credit Hours: " << total_CH;
+        cout << "\nTotal Credit Hours: " << total_CH << endl;
         cout << "\nCalculated GPA: " << GPA << endl;
     }
     else
