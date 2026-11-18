@@ -218,7 +218,7 @@ void displaySummary() {
         cout << "\nGPA cannot be calculated because credit hours are unavailable.\n";
     }
 
-    cout << "\n========================================\n";
+    cout << "\n======================================================\n";
 }
 
 // ============================================================================
@@ -294,15 +294,16 @@ int main() {
     int choice;
 
     do {
-        cout << "\n========================================\n";
-        cout << "      STUDENT ACADEMIC SYSTEM MENU\n";
-        cout << "========================================\n";
-        cout << "1. Calculate Subject Marks & Grade (Feature 1)\n";
-        cout << "2. Calculate Semester GPA (Feature 2)\n";
-        cout << "3. Display Academic Performance Summary (Feature 3)\n";
-        cout << "4. Check Exam Attendance Eligibility (Additional Feature)\n";
-        cout << "5. Exit\n";
-        cout << "Enter your choice (1-5): ";
+        cout << "\n===========================================================\n";
+        cout << "|            STUDENT ACADEMIC SYSTEM MENU                 |\n";
+        cout << "===========================================================\n";
+        cout << "|1. Calculate Subject Marks & Grade (Feature 1)           |\n";
+        cout << "|2. Calculate Semester GPA (Feature 2)                    |\n";
+        cout << "|3. Display Academic Performance Summary (Feature 3)      |\n";
+        cout << "|4. Check Exam Attendance Eligibility (Additional Feature)|\n";
+        cout << "|5. Exit                                                  |\n";
+        cout << "===========================================================\n";
+        cout << "Enter your choice (1-5):";
         cin >> choice;
 
         switch (choice) {
