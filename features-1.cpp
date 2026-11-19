@@ -3,16 +3,15 @@
 using namespace std;
 
 
-int main() {
+int features1(string SubjectName[], int OverallScore[], string grade[], int &subjects) {
     // defining variables for feature 1
-    int subjects;
 
     cout << "Please enter totals subject you have registered for this semester: ";
     cin >> subjects;
 
     const int MAX = subjects;
-    string grade[MAX],SubjectName[MAX];
-    int LabToolMark[MAX], LabCodeMark[MAX], Assign1Mark[MAX], Assign2Mark[MAX], QuizMark[MAX], FEMark[MAX], TestMark[MAX],OverallScore[MAX];
+
+    int LabToolMark[MAX], LabCodeMark[MAX], Assign1Mark[MAX], Assign2Mark[MAX], QuizMark[MAX], FEMark[MAX], TestMark[MAX];
 
     for (int i = 0; i < subjects; i++) {
         cout << "Please enter subject's name: ";
