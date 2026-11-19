@@ -1,45 +1,52 @@
 #include <iostream>
-#include <iomanip>                                                              //for setprecision() function//
+#include <iomanip>
+#include <string>
+#include <vector>
 using namespace std;
 
-int main(){
-int total_subject;
-        double total_GP=0, total_CH=0; 
-        string subject_name="", grade;
-        cout<<"\n-------------------------------------------------"<<endl;      //displaying a line for better readability//
-        cout<<"Enter your total subject for this semester: ";
-        cin>>total_subject;
-        if(total_subject<=0){
-            cout<<"You did not registered any subject!";                        //if the user enters 0 or negative number, it will display this message and exit the program//
-            }
-        for(int j=total_subject;j>0;j--){ 
-            double credit_hour, GP;
-            cout<<"Enter subject name: ";
-            cin.ignore();                                                       //cin.ignore() is used to ignore the newline character left in the input buffer from previous input//
-            getline(cin, subject_name);                                         //getline() is used to read the subject name with spaces//
-            cout<<"Enter your grade for "<<subject_name<<": ";
-            cin>>grade;
-            cout<<"Enter "<<subject_name<<"'s credit hour: ";
-            cin>>credit_hour; 
-            if(grade=="A+"){GP=4.00;} 
-            else if(grade=="A"){GP=4.00;}
-            else if(grade=="A-"){GP=3.67;}
-            else if(grade=="B+"){GP=3.33;}
-            else if(grade=="B"){GP=3.00;}
-            else if(grade=="B-"){GP=2.67;}
-            else if(grade=="C+"){GP=2.33;}
-            else if(grade=="C"){GP=2.00;}
-            else if(grade=="C-"){GP=1.67;}
-            else if(grade=="D+"){GP=1.33;}
-            else if(grade=="D"){GP=1.00;}
-            else if(grade=="D-"){GP=0.67;}
-            else if(grade=="E"){GP=0.00;}
-            else{cout<<"Invalid Grade!";}
-            total_GP=total_GP+(GP*credit_hour);
-            total_CH=total_CH+credit_hour;
-        }
-        double GPA;
-        GPA=total_GP/total_CH;
-        cout<<"Your GPA for this semester is "<<fixed<<setprecision(2)<<GPA;     //setprecision(2) is used to display the GPA with 2 decimal places//
-        return 0;
+int main() {
+    int total_subject, total_CH=0;
+    double total_GP=0,GPA;
+    cout << "Enter your total subject for this semester: ";
+    cin >> total_subject;
+    cin.ignore();                                                 // To ignore the newline character after reading total_subject
+
+    vector<string> arr(total_subject);                             // Array to store subject names
+    vector<string> grade(total_subject);                          // Array to store grades
+    vector<int> credit_hour(total_subject);                       // Array to store credit hours
+    vector<float>grade_point(total_subject);                      // Array to store grade points
+    for (int i = 0; i < total_subject; i++){                        // Loop to get subject names
+        cout<<"Enter your subject's name: ";
+        getline(cin, arr[i]);                                       // Using getline to read the subject name, allowing for spaces
     }
+
+    for (int i = 0; i < total_subject; i++) {                       // Loop to get grades and credit hours for each subject
+        cout<<"Enter your grade for "<<arr[i]<< ": ";
+        cin>>grade[i];
+        cout<<"Enter credit hour for "<<arr[i]<<": ";
+        cin>>credit_hour[i];
+    }
+    for(int i=0;i<total_subject;i++){
+        if(grade[i]=="A+"){grade_point[i]=4.00;}
+        else if(grade[i]=="A"){grade_point[i]=4.00;}
+        else if(grade[i]=="A-"){grade_point[i]=3.67;}
+        else if(grade[i]=="B+"){grade_point[i]=3.33;}
+        else if(grade[i]=="B"){grade_point[i]=3.00;}
+        else if(grade[i]=="B-"){grade_point[i]=2.67;}
+        else if(grade[i]=="C+"){grade_point[i]=2.33;}
+        else if(grade[i]=="C"){grade_point[i]=2.00;}
+        else if(grade[i]=="C-"){grade_point[i]=1.67;}
+        else if(grade[i]=="D+"){grade_point[i]=1.33;}
+        else if(grade[i]=="D"){grade_point[i]=1.00;}
+        else if(grade[i]=="D-"){grade_point[i]=0.67;}
+        else if(grade[i]=="E"){grade_point[i]=0.00;}
+        else{cout<<"Invalid Grade!";}
+        total_GP=total_GP+(grade_point[i]*credit_hour[i]);
+        total_CH=total_CH+credit_hour[i];
+    }
+    GPA=total_GP/total_CH;
+    cout<<"-------------------------------------------"<<endl;                      // Displaying the result
+    cout<<"Your GPA for this semester is "<<fixed<<setprecision(2)<<GPA;            // Using fixed and setprecision to format the GPA to 2 decimal places
+
+    return 0;
+}
