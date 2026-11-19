@@ -10,7 +10,7 @@ using namespace std;
 // Shared structure to store subject records across Feature 1, Feature 2, and Feature 3
 struct SubjectRecord {
     string subject_name;
-    double overallScore;
+    double OverallScore;
     string grade;
     double credit_hours;
     double gradePoint;
@@ -42,40 +42,33 @@ void feature1() {
     // defining variables for feature 1
     string grade;
     int LabToolMark, LabCodeMark, Assign1Mark, Assign2Mark, QuizMark, FEMark, TestMark;
-    float FLabToolMark, FLabCodeMark, FAssign1Mark, FAssign2Mark, FQuizMark, TFEMark, FTestMark, OverallScore;
+    double OverallScore;
 
     // START getting input from user
-    cout << "Please enter student Lab Exercise (Tools) mark (out of 100):" << '\n';
+    cout << "Please enter student Lab Exercise (Tools) mark (in percentage):" << '\n';
     cin >> LabToolMark;
-    FLabToolMark = LabToolMark * 0.1;
 
-    cout << "Please enter student Lab Exercise (Code) mark (out of 100):" << '\n';
+    cout << "Please enter student Lab Exercise (Code) mark (in percentage):" << '\n';
     cin >> LabCodeMark;
-    FLabCodeMark = LabCodeMark * 0.1;
 
-    cout << "Please enter student Assignment 1 mark (out of 100):" << '\n';
+    cout << "Please enter student Assignment 1 mark (in percentage):" << '\n';
     cin >> Assign1Mark;
-    FAssign1Mark = Assign1Mark * 0.1;
 
-    cout << "Please enter student Assignment 2 mark (out of 100):" << '\n';
+    cout << "Please enter student Assignment 2 mark (in percentage):" << '\n';
     cin >> Assign2Mark;
-    FAssign2Mark = Assign2Mark * 0.1;
 
-    cout << "Please enter student total Quiz mark (out of 100):" << '\n';
+    cout << "Please enter student total Quiz mark (in percentage):" << '\n';
     cin >> QuizMark;
-    FQuizMark = QuizMark * 0.1;
 
-    cout << "Please enter student total Test mark (out of 100):" << '\n';
+    cout << "Please enter student total Test mark (in percentage):" << '\n';
     cin >> TestMark;
-    FTestMark = TestMark * 0.2;
 
-    cout << "Please enter student Final Exam mark (out of 100):" << '\n';
+    cout << "Please enter student Final Exam mark (in percentage):" << '\n';
     cin >> FEMark;
-    TFEMark = FEMark * 0.3;
     // STOP getting input from user
 
     //calculate overall score
-    OverallScore = FLabToolMark + FLabCodeMark + FAssign1Mark + FAssign2Mark + FQuizMark + FTestMark + TFEMark;
+    OverallScore = LabToolMark + LabCodeMark + Assign1Mark + Assign2Mark + QuizMark + TestMark + FEMark;
     // START determine grade based on overall score
     if (OverallScore > 100 || OverallScore < 0) {//check whether the overal score is valid or no
         cout << "Error: Please enter a valid mark between 0 and 100\n";
@@ -196,8 +189,8 @@ void displaySummary() {
     for (size_t i = 0; i < subjects.size(); i++) {
         cout << left << setw(25) << subjects[i].subject_name;
 
-        if (subjects[i].overallScore >= 0) {
-            cout << setw(15) << subjects[i].overallScore;
+        if (subjects[i].OverallScore >= 0) {
+            cout << setw(15) << subjects[i].OverallScore;
         } else {
             cout << setw(15) << "N/A";
         }
