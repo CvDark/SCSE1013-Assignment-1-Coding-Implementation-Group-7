@@ -275,6 +275,7 @@ void additionalFeature() {
         transform(subject.begin(), subject.end(), subject.begin(), ::tolower);
     }
 }
+// function to get input subject name and credit hours from user
 void DisplaySubject() {
     string subjectName;
     double creditHours;
