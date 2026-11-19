@@ -4,7 +4,7 @@
 
 using namespace std;
 
-void feature2(int total_subject, string subject[], string grade[], int credit_hour[], double grade_point[], double* GPA) {
+int feature2(int total_subject, string subject[], string grade[], int credit_hour[], double grade_point[], double* GPA) {
     double total_GP = 0.0;
     int total_CH = 0;
 
