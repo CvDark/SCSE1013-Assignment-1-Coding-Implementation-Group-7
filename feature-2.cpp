@@ -46,7 +46,11 @@ int main() {
     }
     GPA=total_GP/total_CH;
     cout<<"-------------------------------------------"<<endl;                      // Displaying the result
-    cout<<"Your GPA for this semester is "<<fixed<<setprecision(2)<<GPA;            // Using fixed and setprecision to format the GPA to 2 decimal places
+    cout<<"Subject\t"<<"Grade\t"<<"Credit Hour\t\t"<<"Grade Point"<<endl;
+    for (int i=0;i<total_subject;i++){
+    cout<<arr[i]<<"\t"<<grade[i]<<"\t\t"<<credit_hour[i]<<"\t\t\t"<<fixed << setprecision(2)<<grade_point[i]<<endl;         // Using fixed and setprecision to format the grade point to 2 decimal places
+    }
+        cout<<"Your GPA for this semester is "<<fixed<<setprecision(2)<<GPA;            // Using fixed and setprecision to format the GPA to 2 decimal places
 
     return 0;
 }
