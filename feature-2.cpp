@@ -4,25 +4,25 @@
 
 using namespace std;
 
-int feature2(int total_subject, string subject[], string grade[], int credit_hour[], double grade_point[], double* GPA) {
+int feature2(int total_subject, string subject[], string grade[], int credit_hour[], double grade_point[], double* GPA) { // Function to calculate GPA based on user input
     double total_GP = 0.0;
     int total_CH = 0;
 
-    cin.ignore();
+    cin.ignore();                                                   // Clear the input buffer to avoid issues with getline after cin
 
     for (int i = 0; i < total_subject; i++) {
         cout << "Enter your subject's name: ";
-        getline(cin, subject[i]);
+        getline(cin, subject[i]);                                   // Get the subject name from user input
     }
 
-    for (int i = 0; i < total_subject; i++) {
+    for (int i = 0; i < total_subject; i++) {                        // Loop to get grades and credit hours for each subject
         cout << "Enter your grade for " << subject[i] << ": ";
         cin >> grade[i];
         cout << "Enter credit hour for " << subject[i] << ": ";
         cin >> credit_hour[i];
     }
 
-    for (int i = 0; i < total_subject; i++) {
+    for (int i = 0; i < total_subject; i++) {                       // Loop to convert grades to grade points and calculate total grade points and credit hours
         if (grade[i] == "A+" || grade[i] == "A") {
             grade_point[i] = 4.00;
         } else if (grade[i] == "A-") {
@@ -61,8 +61,8 @@ int feature2(int total_subject, string subject[], string grade[], int credit_hou
     cout << "-------------------------------------------" << endl;
     cout << "Subject \tGrade \tCredit Hour \t\tGrade Point" << endl;
     for (int i = 0; i < total_subject; i++) {
-        cout << subject[i] << " \t " << grade[i] << " \t\t " << credit_hour[i]
+        cout << subject[i] << " \t " << grade[i] << " \t\t " << credit_hour[i]                          // Display the subject name, grade, credit hour, and grade point for each subject
              << " \t\t\t " << fixed << setprecision(2) << grade_point[i] << endl;
     }
-    cout << "Your GPA for this semester is " << fixed << setprecision(2) << *GPA << endl;
+    cout << "Your GPA for this semester is " << fixed << setprecision(2) << *GPA << endl;               // Display the calculated GPA with two decimal places
 }
