@@ -4,86 +4,79 @@ using namespace std;
 
 
 int main() {
-    int LabToolMark,LabCodeMark,Assign1Mark,Assign2Mark,QuizMark,FEMark,TestMark;
-    float FLabToolMark,FLabCodeMark,FAssign1Mark,FAssign2Mark,FQuizMark,TFEMark,FTestMark,OverallScore;
-    string grade;
+    // defining variables for feature 1
+    int subjects;
 
-    cout << "Please enter student Lab Exercise (Tools) mark (in percentage):"<< '\n';
-    cin >> LabToolMark;
+    cout << "Please enter totals subject you have registered for this semester: ";
+    cin >> subjects;
 
-    cout << "Please enter student Lab Exercise (Code) mark (in percentage):"<< '\n';
-    cin >> LabCodeMark;
+    const int MAX = subjects;
+    string grade[MAX],SubjectName[MAX];
+    int LabToolMark[MAX], LabCodeMark[MAX], Assign1Mark[MAX], Assign2Mark[MAX], QuizMark[MAX], FEMark[MAX], TestMark[MAX],OverallScore[MAX];
 
-    cout << "Please enter student Assignment 1 mark (in percentage):"<< '\n';
-    cin >> Assign1Mark;
+    for (int i = 0; i < subjects; i++) {
+        cout << "Please enter subject's name: ";
+        getline(cin >> ws, SubjectName[i]); // Use ws to consume any leading whitespace
 
-    cout << "Please enter student Assignment 2 mark (in percentage):"<< '\n';
-    cin >> Assign2Mark;
-
-    cout << "Please enter student total Quiz mark (in percentage):"<< '\n';
-    cin >> QuizMark;
-    
-    cout << "Please enter student total Test mark (in percentage):"<< '\n';
-    cin >> TestMark;
-
-    cout << "Please enter student Final Exam mark (in percentage):"<< '\n';
-    cin >> FEMark;
-    
-    OverallScore = FLabToolMark + FLabCodeMark + FAssign1Mark + FAssign2Mark + FQuizMark + FTestMark + TFEMark;
-    if (OverallScore > 100 || OverallScore < 0)  {
-        cout <<"Error: Please enter a valid mark between 0 and 100"<< "n";
+        cout << "Please enter student Lab Exercise (Tools) mark (in percentage):";
+        cin >> LabToolMark[i];
         
-    } else if (OverallScore >= 90) {
-        grade = "A+";
-        cout << grade << '\n';
+        cout << "Please enter student Lab Exercise (Code) mark (in percentage):";
+        cin >> LabCodeMark[i];
 
-    } else if (OverallScore >= 80) {
-        grade = "A";
-        cout << grade << '\n';
+        cout << "Please enter student Assignment 1 mark (in percentage):";
+        cin >> Assign1Mark[i];
 
-    } else if (OverallScore >= 75) {
-        grade = "A-";
-        cout << grade << '\n';
+        cout << "Please enter student Assignment 2 mark (in percentage):";
+        cin >> Assign2Mark[i];
 
-    } else if (OverallScore >= 70) {
-        grade = "B+";
-        cout << grade << '\n';
+        cout << "Please enter student total Quiz mark (in percentage):";
+        cin >> QuizMark[i];
 
-    } else if (OverallScore >= 65) {
-        grade = "B";
-        cout << grade << '\n';
+        cout << "Please enter student total Test mark (in percentage):";
+        cin >> TestMark[i];
 
-    } else if (OverallScore >= 60) {
-        grade = "B-";
-        cout << grade << '\n';
+        cout << "Please enter student Final Exam mark (in percentage):";
+        cin >> FEMark[i];
 
-    } else if (OverallScore >= 55) {
-        grade = "C+";
-        cout << grade << '\n';
+        //calculate overall score
+        OverallScore[i] = LabToolMark[i] + LabCodeMark[i] + Assign1Mark[i] + Assign2Mark[i] + QuizMark[i] + TestMark[i] + FEMark[i];
 
-    } else if (OverallScore >= 50) {
-        grade = "C";
-        cout << grade << '\n';
-
-    } else if (OverallScore >= 45) {
-        grade = "C-";
-        cout << grade << '\n';
-
-    } else if (OverallScore >= 40) {
-        grade = "D+";
-        cout << grade << '\n';
-
-    } else if (OverallScore >= 35) {
-        grade = "D";
-        cout << grade << '\n';
-
-    } else if (OverallScore >= 30) {
-        grade = "D-";
-        cout << grade << '\n';
-        
-    } else {
-        grade = "F";
-        cout << grade << '\n';
+        // START determine grade based on overall score
+        if (OverallScore[i] > 100 || OverallScore[i] < 0) {//check whether the overal score is valid or no
+            cout << "Error: Please enter a valid mark between 0 and 100\n";
+            return 1; // Exit the program with an error code
+        } else if (OverallScore[i] >= 90) {
+            grade[i] = "A+";
+        } else if (OverallScore[i] >= 80) {
+            grade[i] = "A";
+        } else if (OverallScore[i] >= 75) {
+            grade[i] = "A-";
+        } else if (OverallScore[i] >= 70) {
+            grade[i] = "B+";
+        } else if (OverallScore[i] >= 65) {
+            grade[i] = "B";
+        } else if (OverallScore[i] >= 60) {
+            grade[i] = "B-";
+        } else if (OverallScore[i] >= 55) {
+            grade[i] = "C+";
+        } else if (OverallScore[i] >= 50) {
+            grade[i] = "C";
+        } else if (OverallScore[i] >= 45) {
+            grade[i] = "C-";
+        } else if (OverallScore[i] >= 40) {
+            grade[i] = "D+";
+        } else if (OverallScore[i] >= 35) {
+            grade[i] = "D";
+        } else if (OverallScore[i] >= 30) {
+            grade[i] = "D-";
+        } else {
+            grade[i] = "F";
+        }
     }
-   return 0;
+    
+    for (int i = 0; i < subjects; i++) {
+        cout << "Subject: " << SubjectName[i] << " | Overall Score: " << OverallScore[i] << " | Grade: " << grade[i] << '\n';
+    }
+    return 0;
 }
