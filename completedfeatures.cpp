@@ -39,10 +39,12 @@ double getGradePoint(const string& grade) {
 // feature 1
 // ============================================================================
 void feature1() {
+    // defining variables for feature 1
     string grade;
     int LabToolMark, LabCodeMark, Assign1Mark, Assign2Mark, QuizMark, FEMark, TestMark;
     float FLabToolMark, FLabCodeMark, FAssign1Mark, FAssign2Mark, FQuizMark, TFEMark, FTestMark, OverallScore;
 
+    // START getting input from user
     cout << "Please enter student Lab Exercise (Tools) mark (out of 100):" << '\n';
     cin >> LabToolMark;
     FLabToolMark = LabToolMark * 0.1;
@@ -70,10 +72,12 @@ void feature1() {
     cout << "Please enter student Final Exam mark (out of 100):" << '\n';
     cin >> FEMark;
     TFEMark = FEMark * 0.3;
+    // STOP getting input from user
 
+    //calculate overall score
     OverallScore = FLabToolMark + FLabCodeMark + FAssign1Mark + FAssign2Mark + FQuizMark + FTestMark + TFEMark;
-
-    if (OverallScore > 100 || OverallScore < 0) {
+    // START determine grade based on overall score
+    if (OverallScore > 100 || OverallScore < 0) {//check whether the overal score is valid or no
         cout << "Error: Please enter a valid mark between 0 and 100\n";
         return;
     } else if (OverallScore >= 90) {
@@ -103,8 +107,9 @@ void feature1() {
     } else {
         grade = "F";
     }
-
-    cout << "Overall Score: " << fixed << setprecision(2) << OverallScore << " | Grade: " << grade << '\n';
+    // END determine grade
+    //display grade 
+    cout <<" | Grade: " << grade << '\n';
 
     // Save record so Feature 3 can display it
     subjects.push_back({"",OverallScore,grade,0.0, getGradePoint(grade)});
