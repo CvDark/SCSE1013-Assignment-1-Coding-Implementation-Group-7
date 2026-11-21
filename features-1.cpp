@@ -3,7 +3,7 @@
 using namespace std;
 
 
-int features1(string SubjectName[], int OverallScore[], string grade[], int &subjects) {
+void features1(string SubjectName[], int OverallScore[], string grade[], int &subjects) {
     // defining variables for feature 1
 
     cout << "Please enter totals subject you have registered for this semester: ";
@@ -44,7 +44,7 @@ int features1(string SubjectName[], int OverallScore[], string grade[], int &sub
         // START determine grade based on overall score
         if (OverallScore[i] > 100 || OverallScore[i] < 0) {//check whether the overal score is valid or no
             cout << "Error: Please enter a valid mark between 0 and 100\n";
-            return 1; // Exit the program with an error code
+            return; // Exit the function
         } else if (OverallScore[i] >= 90) {
             grade[i] = "A+";
         } else if (OverallScore[i] >= 80) {
@@ -55,7 +55,7 @@ int features1(string SubjectName[], int OverallScore[], string grade[], int &sub
             grade[i] = "B+";
         } else if (OverallScore[i] >= 65) {
             grade[i] = "B";
-        } else if (OverallScore[i] >= 60) {
+        } else if (OverallScore[i]  >= 60) {
             grade[i] = "B-";
         } else if (OverallScore[i] >= 55) {
             grade[i] = "C+";
@@ -73,9 +73,4 @@ int features1(string SubjectName[], int OverallScore[], string grade[], int &sub
             grade[i] = "F";
         }
     }
-    
-    for (int i = 0; i < subjects; i++) {
-        cout << "Subject: " << SubjectName[i] << " | Overall Score: " << OverallScore[i] << " | Grade: " << grade[i] << '\n';
-    }
-    return 0;
 }
