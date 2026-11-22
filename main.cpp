@@ -6,7 +6,7 @@
 #include <cctype>
 using namespace std;
 
-int features1(string SubjectName[], int OverallScore[], string grade[], int &subjects) {
+int feature1(string SubjectName[], int OverallScore[], string grade[], int &subjects) {
     // defining variables for feature 1
 
     cout << "Please enter totals subject you have registered for this semester: ";
@@ -78,67 +78,87 @@ int features1(string SubjectName[], int OverallScore[], string grade[], int &sub
     }
 }
 
-int feature2(){
-int total_subject;
-        double total_GP=0, total_CH=0; 
-        string subject_name="", grade;
-        cout<<"\n-------------------------------------------------"<<endl;      //displaying a line for better readability//
-        cout<<"Enter your total subject for this semester: ";
-        cin>>total_subject;
-        if(total_subject<=0){
-            cout<<"You did not registered any subject!";                        //if the user enters 0 or negative number, it will display this message and exit the program//
-            }
-        for(int j=total_subject;j>0;j--){ 
-            double credit_hour, GP;
-            cout<<"Enter subject name: ";
-            cin.ignore();                                                       //cin.ignore() is used to ignore the newline character left in the input buffer from previous input//
-            getline(cin, subject_name);                                         //getline() is used to read the subject name with spaces//
-            cout<<"Enter your grade for "<<subject_name<<": ";
-            cin>>grade;
-            cout<<"Enter "<<subject_name<<"'s credit hour: ";
-            cin>>credit_hour; 
-            if(grade=="A+"){GP=4.00;} 
-            else if(grade=="A"){GP=4.00;}
-            else if(grade=="A-"){GP=3.67;}
-            else if(grade=="B+"){GP=3.33;}
-            else if(grade=="B"){GP=3.00;}
-            else if(grade=="B-"){GP=2.67;}
-            else if(grade=="C+"){GP=2.33;}
-            else if(grade=="C"){GP=2.00;}
-            else if(grade=="C-"){GP=1.67;}
-            else if(grade=="D+"){GP=1.33;}
-            else if(grade=="D"){GP=1.00;}
-            else if(grade=="D-"){GP=0.67;}
-            else if(grade=="E"){GP=0.00;}
-            else{cout<<"Invalid Grade!";}
-            total_GP=total_GP+(GP*credit_hour);
-            total_CH=total_CH+credit_hour;
-        }
-        double GPA;
-        GPA=total_GP/total_CH;
-        cout<<"Your GPA for this semester is "<<fixed<<setprecision(2)<<GPA;     //setprecision(2) is used to display the GPA with 2 decimal places//
-        return 0;
+int feature2(int total_subject, string subject[], string grade[], int credit_hour[], double grade_point[], double* GPA) { // Function to calculate GPA based on user input
+    double total_GP = 0.0;
+    int total_CH = 0;
+
+    cin.ignore();                                                   // Clear the input buffer to avoid issues with getline after cin
+
+    for (int i = 0; i < total_subject; i++) {
+        cout << "Enter your subject's name: ";
+        getline(cin, subject[i]);                                   // Get the subject name from user input
     }
 
-    void displaySummary()
+    for (int i = 0; i < total_subject; i++) {                        // Loop to get grades and credit hours for each subject
+        cout << "Enter your grade for " << subject[i] << ": ";
+        cin >> grade[i];
+        cout << "Enter credit hour for " << subject[i] << ": ";
+        cin >> credit_hour[i];
+    }
+
+    for (int i = 0; i < total_subject; i++) {                       // Loop to convert grades to grade points and calculate total grade points and credit hours
+        if (grade[i] == "A+" || grade[i] == "A") {
+            grade_point[i] = 4.00;
+        } else if (grade[i] == "A-") {
+            grade_point[i] = 3.67;
+        } else if (grade[i] == "B+") {
+            grade_point[i] = 3.33;
+        } else if (grade[i] == "B") {
+            grade_point[i] = 3.00;
+        } else if (grade[i] == "B-") {
+            grade_point[i] = 2.67;
+        } else if (grade[i] == "C+") {
+            grade_point[i] = 2.33;
+        } else if (grade[i] == "C") {
+            grade_point[i] = 2.00;
+        } else if (grade[i] == "C-") {
+            grade_point[i] = 1.67;
+        } else if (grade[i] == "D+") {
+            grade_point[i] = 1.33;
+        } else if (grade[i] == "D") {
+            grade_point[i] = 1.00;
+        } else if (grade[i] == "D-") {
+            grade_point[i] = 0.67;
+        } else if (grade[i] == "E") {
+            grade_point[i] = 0.00;
+        } else {
+            cout << "Invalid Grade!" << endl;
+            grade_point[i] = 0.00;
+        }
+
+        total_GP += grade_point[i] * credit_hour[i];
+        total_CH += credit_hour[i];
+    }
+
+    *GPA = total_GP / total_CH;
+
+    cout << "-------------------------------------------" << endl;
+    cout << "Subject \tGrade \tCredit Hour \t\tGrade Point" << endl;
+    for (int i = 0; i < total_subject; i++) {
+        cout << subject[i] << " \t " << grade[i] << " \t\t " << credit_hour[i]                          // Display the subject name, grade, credit hour, and grade point for each subject
+             << " \t\t\t " << fixed << setprecision(2) << grade_point[i] << endl;
+    }
+    cout << "Your GPA for this semester is " << fixed << setprecision(2) << *GPA << endl;               // Display the calculated GPA with two decimal places
+}
+
+    void displaySummary(string subject[], int overallScore[], string grade[], int credit_hour[], double grade_point[], int total_subject)
 {
-    cout << "\n========================================\n";
-    cout << "       ACADEMIC PERFORMANCE SUMMARY\n";
-    cout << "========================================\n";
+    cout << "\n=======================================================================\n";
+    cout << "                     ACADEMIC PERFORMANCE SUMMARY\n";
+    cout << "=======================================================================\n";
 
     // Check whether any subject information exists
-    if (subjects.empty())
+    if (total_subject <= 0)
     {
         cout << "\nNo academic records available yet.\n";
         cout << "Please complete Feature 1 or Feature 2 first.\n";
         return;
     }
 
-    // Display subject information
-    cout << fixed << setprecision(2);                                                          // set Grade Point to 2 decimal points
+    cout << fixed << setprecision(2);
 
     cout << "\n";
-    cout << left << setw(20) << "Subject"                                                       // setw() is used to set width for output formatting
+    cout << left << setw(20) << "Subject"
          << setw(15) << "Score"
          << setw(10) << "Grade"
          << setw(15) << "Credit Hours"
@@ -149,39 +169,35 @@ int total_subject;
     double total_GP = 0;
     int total_CH = 0;
 
-    for (int i = 0; i < subjects.size(); i++)
+    for (int i = 0; i < total_subject; i++)
     {
-        cout << left << setw(20) << subjects[i].subject_name
-             << setw(15) << subjects[i].overallScore
-             << setw(10) << subjects[i].grade
-             << setw(15) << subjects[i].credit_hours
-             << setw(12) << subjects[i].gradePoint << endl;
+        cout << left << setw(20) << subject[i]
+             << setw(15) << overallScore[i]
+             << setw(10) << grade[i]
+             << setw(15) << credit_hour[i]
+             << setw(12) << grade_point[i] << endl;
 
-        // Calculate total weighted grade points
-        total_GP +=
-            subjects[i].credit_hours * subjects[i].gradePoint;
-
-        total_CH += subjects[i].credit_hours;
+        total_GP += credit_hour[i] * grade_point[i];
+        total_CH += credit_hour[i];
     }
 
     cout << "-----------------------------------------------------------------------\n";
 
-    // Display GPA
     if (total_CH > 0)
     {
         double GPA = total_GP / total_CH;
 
         cout << "\nTotal Credit Hours: " << total_CH << endl;
-        cout << "\nCalculated GPA: " << GPA << endl;
+        cout << "Calculated GPA: " << GPA << endl;
     }
     else
     {
         cout << "\nGPA cannot be calculated because credit hours are unavailable.\n";
     }
 
-    cout << "\n========================================\n";
+    cout << "\n=======================================================================\n";
 }
-int main()
+int additionalfeatures()
 {
     int totalClass, classAttend;           
     string subject;                        
@@ -237,4 +253,58 @@ int main()
     }
 
     return 0;                                                                               //Program ends successfully
+}
+
+// ============================================================================
+// Main Menu Controller
+// ============================================================================
+int main() {
+    const int MAX = 15; // Maximum capacity for all parallel arrays
+
+    // Variables matching feature1 and feature2
+    string SubjectName[MAX];
+    string grade[MAX];
+    int OverallScore[MAX];
+    int credit_hour[MAX];
+    double grade_point[MAX];
+
+    int subjects;
+    double GPA;
+    int choice;
+
+    do {
+        cout << "\n===========================================================\n";
+        cout << "|            STUDENT ACADEMIC SYSTEM MENU                 |\n";
+        cout << "===========================================================\n";
+        cout << "|1. Calculate Subject Marks & Grade (Feature 1)           |\n";
+        cout << "|2. Calculate Semester GPA (Feature 2)                    |\n";
+        cout << "|3. Display Academic Performance Summary (Feature 3)      |\n";
+        cout << "|4. Check Exam Attendance Eligibility (Additional Feature)|\n";
+        cout << "|5. Exit                                                  |\n";
+        cout << "===========================================================\n";
+        cout << "Enter your choice (1-5):";
+        cin >> choice;
+
+        switch (choice) {
+            case 1:
+                feature1(SubjectName, OverallScore, grade, subjects);
+                break;
+            case 2: 
+                feature2(subjects, SubjectName, grade, credit_hour, grade_point, &GPA);
+                break;
+            case 3:
+                displaySummary(SubjectName, OverallScore, grade, credit_hour, grade_point, subjects);
+                break;
+            case 4:
+                additionalfeatures();
+                break;
+            case 5:
+                cout << "Exiting program. Goodbye!\n";
+                break;
+            default:
+                cout << "Invalid choice. Please enter a number between 1 and 5.\n";
+        }
+    } while (choice != 5);
+
+    return 0;
 }
