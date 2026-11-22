@@ -3,7 +3,7 @@
 using namespace std;
 
 
-void features1(string SubjectName[], int OverallScore[], string grade[], int &subjects) {
+void feature1(string SubjectName[], int OverallScore[], string grade[], int &subjects) {
     // defining variables for feature 1
 
     cout << "Please enter totals subject you have registered for this semester: ";
