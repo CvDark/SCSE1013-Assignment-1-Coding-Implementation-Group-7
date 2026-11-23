@@ -3,13 +3,13 @@
 using namespace std;
 
 
-void feature1(string SubjectName[], int OverallScore[], string grade[], int &subjects) {
+int feature1(string SubjectName[], int OverallScore[], string grade[], int &subjects) {
     // defining variables for feature 1
+
+    const int MAX = 15;
 
     cout << "Please enter totals subject you have registered for this semester: ";
     cin >> subjects;
-
-    const int MAX = subjects;
 
     int LabToolMark[MAX], LabCodeMark[MAX], Assign1Mark[MAX], Assign2Mark[MAX], QuizMark[MAX], FEMark[MAX], TestMark[MAX];
 
@@ -44,7 +44,8 @@ void feature1(string SubjectName[], int OverallScore[], string grade[], int &sub
         // START determine grade based on overall score
         if (OverallScore[i] > 100 || OverallScore[i] < 0) {//check whether the overal score is valid or no
             cout << "Error: Please enter a valid mark between 0 and 100\n";
-            return; // Exit the function
+            subjects = 0;
+            return 1; // Exit the function
         } else if (OverallScore[i] >= 90) {
             grade[i] = "A+";
         } else if (OverallScore[i] >= 80) {
@@ -73,4 +74,5 @@ void feature1(string SubjectName[], int OverallScore[], string grade[], int &sub
             grade[i] = "F";
         }
     }
+    return 0;
 }

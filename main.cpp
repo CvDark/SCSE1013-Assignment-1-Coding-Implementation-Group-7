@@ -6,13 +6,13 @@
 #include <cctype>
 using namespace std;
 
+const int MAX = 15;
+
 int feature1(string SubjectName[], int OverallScore[], string grade[], int &subjects) {
     // defining variables for feature 1
 
     cout << "Please enter totals subject you have registered for this semester: ";
     cin >> subjects;
-
-    const int MAX = subjects;
 
     int LabToolMark[MAX], LabCodeMark[MAX], Assign1Mark[MAX], Assign2Mark[MAX], QuizMark[MAX], FEMark[MAX], TestMark[MAX];
 
@@ -22,7 +22,7 @@ int feature1(string SubjectName[], int OverallScore[], string grade[], int &subj
 
         cout << "Please enter student Lab Exercise (Tools) mark (in percentage):";
         cin >> LabToolMark[i];
-        
+
         cout << "Please enter student Lab Exercise (Code) mark (in percentage):";
         cin >> LabCodeMark[i];
 
@@ -76,6 +76,7 @@ int feature1(string SubjectName[], int OverallScore[], string grade[], int &subj
             grade[i] = "F";
         }
     }
+    return 0;
 }
 
 int feature2(int total_subject, string subject[], string grade[], int credit_hour[], double grade_point[], double* GPA) { // Function to calculate GPA based on user input
@@ -138,7 +139,8 @@ int feature2(int total_subject, string subject[], string grade[], int credit_hou
         cout << subject[i] << " \t " << grade[i] << " \t\t " << credit_hour[i]                          // Display the subject name, grade, credit hour, and grade point for each subject
              << " \t\t\t " << fixed << setprecision(2) << grade_point[i] << endl;
     }
-    cout << "Your GPA for this semester is " << fixed << setprecision(2) << *GPA << endl;               // Display the calculated GPA with two decimal places
+    cout << "Your GPA for this semester is " << fixed << setprecision(2) << *GPA << endl;    
+    return 0;           // Display the calculated GPA with two decimal places
 }
 
     void displaySummary(string subject[], int overallScore[], string grade[], int credit_hour[], double grade_point[], int total_subject)
@@ -259,19 +261,15 @@ int additionalfeatures()
 // Main Menu Controller
 // ============================================================================
 int main() {
-    const int MAX = 15; // Maximum capacity for all parallel arrays
-
-    // Variables matching feature1 and feature2
     string SubjectName[MAX];
     string grade[MAX];
-    int OverallScore[MAX];
-    int credit_hour[MAX];
-    double grade_point[MAX];
+    int OverallScore[MAX] = {0};
+    int credit_hour[MAX] = {0};
+    double grade_point[MAX] = {0.0};
 
-    int subjects;
-    double GPA;
+    int subjects = 0;
+    double GPA = 0.0;
     int choice;
-
     do {
         cout << "\n===========================================================\n";
         cout << "|            STUDENT ACADEMIC SYSTEM MENU                 |\n";
