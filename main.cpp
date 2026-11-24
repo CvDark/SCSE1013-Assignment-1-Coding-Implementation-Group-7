@@ -8,17 +8,17 @@ using namespace std;
 
 const int MAX = 15;
 
-int feature1(string SubjectName[], int OverallScore[], string grade[], int &subjects) {
+int feature1(string SubjectName1[], int OverallScore[], string grade[], int &total_subject1) {
     // defining variables for feature 1
 
     cout << "Please enter totals subject you have registered for this semester: ";
-    cin >> subjects;
+    cin >> total_subject1;
 
     int LabToolMark[MAX], LabCodeMark[MAX], Assign1Mark[MAX], Assign2Mark[MAX], QuizMark[MAX], FEMark[MAX], TestMark[MAX];
 
-    for (int i = 0; i < subjects; i++) {
+    for (int i = 0; i < total_subject1; i++) {
         cout << "Please enter subject's name: ";
-        getline(cin >> ws, SubjectName[i]); // Use ws to consume any leading whitespace
+        getline(cin >> ws, SubjectName1[i]); // Use ws to consume any leading whitespace
 
         cout << "Please enter student Lab Exercise (Tools) mark (in percentage):";
         cin >> LabToolMark[i];
@@ -79,25 +79,25 @@ int feature1(string SubjectName[], int OverallScore[], string grade[], int &subj
     return 0;
 }
 
-int feature2(int total_subject, string subject[], string grade2[], int credit_hour[], double grade_point[], double* GPA) { // Function to calculate GPA based on user input
+int feature2(int total_subject2, string SubjectName2[], string grade2[], int credit_hour[], double grade_point[], double* GPA) { // Function to calculate GPA based on user input
     double total_GP = 0.0;
     int total_CH = 0;
 
     cin.ignore();                                                   // Clear the input buffer to avoid issues with getline after cin
 
-    for (int i = 0; i < total_subject; i++) {
+    for (int i = 0; i < total_subject2; i++) {
         cout << "Enter your subject's name: ";
-        getline(cin, subject[i]);                                   // Get the subject name from user input
+        getline(cin, SubjectName2[i]);                                   // Get the subject name from user input
     }
 
-    for (int i = 0; i < total_subject; i++) {                        // Loop to get grades and credit hours for each subject
-        cout << "Enter your grade for " << subject[i] << ": ";
+    for (int i = 0; i < total_subject2; i++) {                        // Loop to get grades and credit hours for each subject
+        cout << "Enter your grade for " << SubjectName2[i] << ": ";
         cin >> grade2[i];
-        cout << "Enter credit hour for " << subject[i] << ": ";
+        cout << "Enter credit hour for " << SubjectName2[i] << ": ";
         cin >> credit_hour[i];
     }
 
-    for (int i = 0; i < total_subject; i++) {                       // Loop to convert grades to grade points and calculate total grade points and credit hours
+    for (int i = 0; i < total_subject2; i++) {                       // Loop to convert grades to grade points and calculate total grade points and credit hours
         if (grade2[i] == "A+" || grade2[i] == "A") {
             grade_point[i] = 4.00;
         } else if (grade2[i] == "A-") {
@@ -135,15 +135,15 @@ int feature2(int total_subject, string subject[], string grade2[], int credit_ho
 
     cout << "-------------------------------------------" << endl;
     cout << "Subject \tGrade \tCredit Hour \t\tGrade Point" << endl;
-    for (int i = 0; i < total_subject; i++) {
-        cout << subject[i] << " \t " << grade2[i] << " \t\t " << credit_hour[i]                          // Display the subject name, grade, credit hour, and grade point for each subject
+    for (int i = 0; i < total_subject2; i++) {
+        cout << SubjectName2[i] << " \t " << grade2[i] << " \t\t " << credit_hour[i]                          // Display the subject name, grade, credit hour, and grade point for each subject
              << " \t\t\t " << fixed << setprecision(2) << grade_point[i] << endl;
     }
     cout << "Your GPA for this semester is " << fixed << setprecision(2) << *GPA << endl;    
     return 0;           // Display the calculated GPA with two decimal places
 }
 
-        void displaySummary(string subject1[], int OverallScore[], string grade1[], int subjects1,string subject2[], string grade2[], int credit_hour[], double grade_point[], int subjects2)
+    void displaySummary(string subject1[], int OverallScore[], string grade1[], int subjects1,string total_subject2[], string grade2[], int credit_hour[], double grade_point[], int subjects2)
 {
     cout << "\n=======================================================================\n";
     cout << "                     ACADEMIC PERFORMANCE SUMMARY\n";
@@ -197,7 +197,7 @@ int feature2(int total_subject, string subject[], string grade2[], int credit_ho
 
         for (int i = 0; i < subjects2; i++)
         {
-            cout << left << setw(25) << subject2[i]
+            cout << left << setw(25) << total_subject2[i]
                  << setw(10) << grade2[i]
                  << setw(15) << credit_hour[i]
                  << setw(12) << grade_point[i] << endl;
@@ -287,14 +287,14 @@ int main() {
     string SubjectName1[MAX];
     string grade1[MAX];
     int OverallScore[MAX] = {0};
-    int subjects1 = 0;
+    int total_subject1 = 0;
 
     // Separate storage for Feature 2
     string SubjectName2[MAX];
     string grade2[MAX];
     int credit_hour[MAX] = {0};
     double grade_point[MAX] = {0.0};
-    int subjects2 = 0;
+    int total_subject2 = 0;
     double GPA = 0.0;
     int choice;
     do {
@@ -312,13 +312,13 @@ int main() {
 
         switch (choice) {
             case 1:
-                feature1(SubjectName1, OverallScore, grade1, subjects1);
+                feature1(SubjectName1, OverallScore, grade1, total_subject1);
                 break;
             case 2: 
-                feature2(subjects2, SubjectName2, grade2, credit_hour, grade_point, &GPA);
+                feature2(total_subject2, SubjectName2, grade2, credit_hour, grade_point, &GPA);
                 break;
             case 3:
-                displaySummary(SubjectName1, OverallScore, grade1, subjects1,SubjectName2, grade2, credit_hour, grade_point, subjects2);
+                displaySummary(SubjectName1, OverallScore, grade1, total_subject1,SubjectName2, grade2, credit_hour, grade_point, total_subject2);
                 break;
             case 4:
                 additionalfeatures();
