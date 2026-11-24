@@ -132,15 +132,6 @@ int feature2(int total_subject2, string SubjectName2[], string grade2[], int cre
     }
 
     *GPA = total_GP / total_CH;
-
-    cout << "-------------------------------------------" << endl;
-    cout << "Subject \tGrade \tCredit Hour \t\tGrade Point" << endl;
-    for (int i = 0; i < total_subject2; i++) {
-        cout << SubjectName2[i] << " \t " << grade2[i] << " \t\t " << credit_hour[i]                          // Display the subject name, grade, credit hour, and grade point for each subject
-             << " \t\t\t " << fixed << setprecision(2) << grade_point[i] << endl;
-    }
-    cout << "Your GPA for this semester is " << fixed << setprecision(2) << *GPA << endl;    
-    return 0;           // Display the calculated GPA with two decimal places
 }
 
     void displaySummary(string subject1[], int OverallScore[], string grade1[], int subjects1,string total_subject2[], string grade2[], int credit_hour[], double grade_point[], int subjects2)
